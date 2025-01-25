@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "start": "vite preview --port 5000"
+    "start": "vite"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
