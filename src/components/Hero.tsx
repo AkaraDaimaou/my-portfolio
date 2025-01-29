@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
-import '../components.css';
+
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);

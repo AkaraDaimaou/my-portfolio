@@ -1,5 +1,5 @@
 import { ExternalLink, Github } from 'lucide-react';
-import '../components.css';
+
 
 const Projects = () => {
   const projects = [

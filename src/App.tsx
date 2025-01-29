@@ -1,10 +1,10 @@
-import About from './assets/components/About'
-import Hero from './assets/components/Hero'
-import './assets/components/Navbar'
-import Footer from './assets/components/Footer'
-import Header from './assets/components/Header'
-import Contact from './assets/components/Contact'
-import Projects from './assets/components/Projects';
+import About from './components/About'
+import Hero from './components/Hero'
+import './components/Navbar'
+import Footer from './components/Footer';
+import Header from './components/Header';
+import Contact from './components/Contact';
+import Projects from './components/Projects';
 
 function App() {
   return (

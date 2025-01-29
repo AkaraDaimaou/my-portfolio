@@ -1,5 +1,5 @@
 import { Github, Linkedin, Mail } from 'lucide-react';
-import '../components.css';
+
 
 const Footer = () => {
   return (

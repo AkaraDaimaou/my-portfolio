@@ -2,7 +2,7 @@ import React from 'react';
 import { Menu, X } from 'lucide-react';
 import { Github } from 'lucide-react';
 import { Linkedin } from 'lucide-react';
-import '../components.css';
+
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
