@@ -1,23 +1,25 @@
-import About from './components/About'
-import Hero from './components/Hero'
-import './components/Navbar'
-import Footer from './components/Footer';
 import Header from './components/Header';
-import Contact from './components/Contact';
+import Hero from './components/Hero';
+import About from './components/About';
 import Projects from './components/Projects';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
+import Background from './components/Background';
 
 function App() {
   return (
-    <div className="min-h-screen bg-white">
-      <Header />
-      <main>
-        <Hero />
-        <About />
-        <Contact />
-        <Projects />
-
-      </main>
-      <Footer />
+    <div className="min-h-screen bg-white relative">
+      <Background />
+      <div className="relative z-10">
+        <Header />
+        <main>
+          <Hero />
+          <About />
+          <Projects />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
     </div>
   );
 }
