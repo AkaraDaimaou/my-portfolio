@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Dark mode transitions */
+.dark {
+  color-scheme: dark;
+}
+
 /* 3D Transforms */
 .perspective {
   perspective: 2000px;
@@ -35,23 +40,60 @@
 
 /* Glowing Effects */
 .glowing-text {
+  @apply transition-all duration-300;
+}
+
+.dark .glowing-text {
+  text-shadow: 0 0 10px rgba(147, 197, 253, 0.5);
+}
+
+.light .glowing-text {
   text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
 }
 
 .shadow-neon {
+  @apply transition-all duration-300;
+}
+
+.dark .shadow-neon {
+  box-shadow: 
+    0 0 5px rgba(147, 197, 253, 0.3),
+    0 0 20px rgba(147, 197, 253, 0.2);
+}
+
+.light .shadow-neon {
   box-shadow: 
     0 0 5px rgba(59, 130, 246, 0.3),
     0 0 20px rgba(59, 130, 246, 0.2);
-  transition: box-shadow 0.3s ease;
 }
 
 .shadow-neon:hover {
+  @apply transition-all duration-300;
+}
+
+.dark .shadow-neon:hover {
+  box-shadow: 
+    0 0 10px rgba(147, 197, 253, 0.5),
+    0 0 30px rgba(147, 197, 253, 0.3);
+}
+
+.light .shadow-neon:hover {
   box-shadow: 
     0 0 10px rgba(59, 130, 246, 0.5),
     0 0 30px rgba(59, 130, 246, 0.3);
 }
 
 .glass-effect {
+  @apply transition-all duration-300;
+}
+
+.dark .glass-effect {
+  backdrop-filter: blur(10px);
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.light .glass-effect {
   backdrop-filter: blur(10px);
   background: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -82,15 +124,47 @@ html {
   width: 8px;
 }
 
-::-webkit-scrollbar-track {
+.dark ::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+.light ::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
 
-::-webkit-scrollbar-thumb {
+.dark ::-webkit-scrollbar-thumb {
+  background: #4b5563;
+  border-radius: 4px;
+}
+
+.light ::-webkit-scrollbar-thumb {
   background: #888;
   border-radius: 4px;
 }
 
-::-webkit-scrollbar-thumb:hover {
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}
+
+.light ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+/* Skill Card Animations */
+.skill-card {
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.skill-card:hover pre {
+  transform: translateY(-2px);
+}
+
+.skill-card pre {
+  transition: transform 0.3s ease;
+}
+
+.skill-card pre code {
+  font-family: 'Fira Code', monospace;
+  line-height: 1.5;
 }
