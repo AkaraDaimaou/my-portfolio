@@ -2,25 +2,32 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
 import Projects from './components/Projects';
+import Pricing from './components/Pricing';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Background from './components/Background';
+import ThemeToggle from './components/ThemeToggle';
+import { ThemeProvider } from './context/ThemeContext';
 
 function App() {
   return (
-    <div className="min-h-screen bg-white relative">
-      <Background />
-      <div className="relative z-10">
-        <Header />
-        <main>
-          <Hero />
-          <About />
-          <Projects />
-          <Contact />
-        </main>
-        <Footer />
+    <ThemeProvider>
+      <div className="min-h-screen bg-white dark:bg-gray-900 relative transition-colors duration-300">
+        <Background />
+        <div className="relative z-10">
+          <Header />
+          <main>
+            <Hero />
+            <About />
+            <Projects />
+            <Pricing />
+            <Contact />
+          </main>
+          <Footer />
+          <ThemeToggle />
+        </div>
       </div>
-    </div>
+    </ThemeProvider>
   );
 }
 
