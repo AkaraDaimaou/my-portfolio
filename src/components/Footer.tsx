@@ -1,5 +1,4 @@
-import { Github, Linkedin, Mail } from 'lucide-react';
-
+import { Github, Linkedin } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -12,6 +11,7 @@ const Footer = () => {
             <a href="#about" className="hover:text-blue-400 transition-colors">About</a>
             <a href="#projects" className="hover:text-blue-400 transition-colors">Projects</a>
             <a href="#contact" className="hover:text-blue-400 transition-colors">Contact</a>
+            <a href="/resume.pdf" target="_blank" className="hover:text-blue-400 transition-colors">Resume</a>
           </div>
           <div className="flex space-x-6">
             <a 
@@ -29,13 +29,6 @@ const Footer = () => {
               className="hover:text-blue-400 transition-colors"
             >
               <Linkedin className="w-5 h-5" />
-            </a>
-            <a 
-              href="mailto:veerbeedessy171@outlook.com?subject=Contacting%20You&body=Hello%20Vashist,%0A%0AI%20am%20reaching%20out%20to%20discuss..." 
-              aria-label="Send an email to Vashist" 
-              className="hover:text-blue-400 transition-colors hover:scale-110 transition-transform"
-            >
-              <Mail className="w-5 h-5" />
             </a>
           </div>
         </div>
