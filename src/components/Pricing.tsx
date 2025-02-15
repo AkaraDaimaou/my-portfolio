@@ -67,6 +67,19 @@ const Pricing = () => {
     },
   ];
 
+  const handleGetStarted = (tier: string) => {
+    // Scroll to contact form with the selected tier
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+      // You could also pre-fill the contact form with the selected tier
+      const messageInput = document.getElementById('message') as HTMLTextAreaElement;
+      if (messageInput) {
+        messageInput.value = `I'm interested in the ${tier} package.`;
+      }
+    }
+  };
+
   return (
     <section id="pricing" className="py-20 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -146,7 +159,10 @@ const Pricing = () => {
                 <div className="text-sm text-gray-600 dark:text-gray-300 mb-6 transition-colors duration-300">
                   Estimated delivery time: {tier.deliveryTime}
                 </div>
-                <button className="w-full py-3 px-6 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium transition-colors duration-300 transform hover:scale-105">
+                <button 
+                  onClick={() => handleGetStarted(tier.name)}
+                  className="w-full py-3 px-6 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium transition-colors duration-300 transform hover:scale-105"
+                >
                   Get Started
                 </button>
               </div>

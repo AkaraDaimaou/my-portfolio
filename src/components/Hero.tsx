@@ -18,14 +18,23 @@ const Hero = () => {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center pt-16 overflow-hidden perspective">
-      <div 
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 transform-3d relative"
-        style={{
-          transform: `rotateX(${mousePosition.y * 0.1}deg) rotateY(${mousePosition.x * 0.1}deg)`,
-        }}
-      >
+    <section id="home" className="min-h-screen flex items-center justify-center pt-16 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative">
+        <div 
+          className="absolute inset-0 transform-3d"
+          style={{
+            transform: `rotateX(${mousePosition.y * 0.1}deg) rotateY(${mousePosition.x * 0.1}deg)`,
+            pointerEvents: 'none'
+          }}
+        />
         <div className="text-center relative">
           <div className="relative">
             <div className="absolute inset-0 rounded-3xl overflow-hidden">
@@ -51,19 +60,19 @@ const Hero = () => {
               isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`}
           >
-            <a
-              href="#projects"
-              className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 dark:bg-blue-500 hover:bg-blue-700 dark:hover:bg-blue-600 hover:scale-105 transform transition-all duration-300 shadow-neon"
+            <button
+              onClick={() => scrollToSection('projects')}
+              className="relative z-10 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 dark:bg-blue-500 hover:bg-blue-700 dark:hover:bg-blue-600 hover:scale-105 transform transition-all duration-300 shadow-neon"
             >
               View My Work
               <ArrowRight className="ml-2 w-5 h-5 animate-float" />
-            </a>
-            <a
-              href="#contact"
-              className="inline-flex items-center px-6 py-3 border border-gray-300 dark:border-gray-600 text-base font-medium rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 hover:scale-105 transform transition-all duration-300 glass-effect"
+            </button>
+            <button
+              onClick={() => scrollToSection('contact')}
+              className="relative z-10 inline-flex items-center px-6 py-3 border border-gray-300 dark:border-gray-600 text-base font-medium rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 hover:scale-105 transform transition-all duration-300 glass-effect"
             >
               Contact Me
-            </a>
+            </button>
           </div>
         </div>
       </div>
