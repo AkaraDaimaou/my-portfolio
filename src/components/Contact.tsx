@@ -10,6 +10,7 @@ const Contact = () => {
   });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [isLoading, setIsLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -31,24 +32,30 @@ const Contact = () => {
     if (!validate()) return;
 
     setIsLoading(true);
+    setSuccessMessage('');
 
     try {
       const result = await emailjs.send(
         'service_kzowtvz',
         'template_ws5c54f',
-        formData,
+        {
+          from_name: formData.name, // Ensure these match your EmailJS template
+          to_name: 'Vashist Beedessy', // Replace with actual recipient name
+          from_email: formData.email,
+          message: formData.message,
+        },
         'wOHacadVPa_se_eqo'
       );
 
       if (result.status === 200) {
-        alert('Message sent successfully!');
+        setSuccessMessage('Message sent successfully!');
         setFormData({ name: '', email: '', message: '' });
       } else {
-        alert('Failed to send message. Please try again later.');
+        setSuccessMessage('Failed to send message. Please try again.');
       }
     } catch (error) {
       console.error('Error sending email:', error);
-      alert('An error occurred while sending the message.');
+      setSuccessMessage('An error occurred while sending the message.');
     } finally {
       setIsLoading(false);
     }
@@ -88,25 +95,26 @@ const Contact = () => {
 
           {/* Contact Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
-            {(['name', 'email'] as const).map((id) => (
-              { id, type: id === 'email' ? 'email' : 'text', label: id.charAt(0).toUpperCase() + id.slice(1) }
-            )).map(({ id, type, label }) => (
-              <div key={id}>
-                <label htmlFor={id} className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                  {label}
-                </label>
-                <input
-                  type={type}
-                  id={id}
-                  name={id}
-                  value={formData[id]}
-                  onChange={handleChange}
-                  required
-                  className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:text-white"
-                />
-                {errors[id] && <small className="text-red-500">{errors[id]}</small>}
-              </div>
-            ))}
+            {['name', 'email'].map((id) => {
+              const type = id === 'email' ? 'email' : 'text';
+              return (
+                <div key={id}>
+                  <label htmlFor={id} className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                    {id.charAt(0).toUpperCase() + id.slice(1)}
+                  </label>
+                  <input
+                    type={type}
+                    id={id}
+                    name={id}
+                    value={formData[id as 'name' | 'email']}
+                    onChange={handleChange}
+                    required
+                    className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:text-white"
+                  />
+                  {errors[id as 'name' | 'email'] && <small className="text-red-500">{errors[id as 'name' | 'email']}</small>}
+                </div>
+              );
+            })}
 
             <div>
               <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -133,6 +141,9 @@ const Contact = () => {
             >
               {isLoading ? 'Sending...' : 'Send Message'}
             </button>
+
+            {/* Success Message */}
+            {successMessage && <p className="text-green-500 mt-2">{successMessage}</p>}
           </form>
         </div>
       </div>
@@ -141,4 +152,3 @@ const Contact = () => {
 };
 
 export default Contact;
-
