@@ -4,7 +4,7 @@ const Pricing = () => {
   const tiers = [
     {
       name: 'Basic',
-      price: 999,
+      price: 15000,
       description: 'Perfect for small businesses and personal brands',
       features: [
         'Responsive Single Page Website',
@@ -24,7 +24,7 @@ const Pricing = () => {
     },
     {
       name: 'Professional',
-      price: 2499,
+      price: 50000,
       description: 'Ideal for growing businesses and startups',
       features: [
         'Multi-Page Website (Up to 5 pages)',
@@ -37,16 +37,13 @@ const Pricing = () => {
         'SSL Certificate',
         '4 Rounds of Revisions',
       ],
-      limitations: [
-        'Limited Database Features',
-        'Basic Analytics',
-      ],
+      limitations: ['Limited Database Features', 'Basic Analytics'],
       recommended: true,
       deliveryTime: '2-3 weeks',
     },
     {
       name: 'Enterprise',
-      price: 4999,
+      price: 100000,
       description: 'Full-featured solution for established businesses',
       features: [
         'Custom Web Application',
@@ -67,12 +64,14 @@ const Pricing = () => {
     },
   ];
 
+  const formatPrice = (price: number) => {
+    return new Intl.NumberFormat('en-MU', { style: 'currency', currency: 'MUR' }).format(price);
+  };
+
   const handleGetStarted = (tier: string) => {
-    // Scroll to contact form with the selected tier
     const contactSection = document.getElementById('contact');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
-      // You could also pre-fill the contact form with the selected tier
       const messageInput = document.getElementById('message') as HTMLTextAreaElement;
       if (messageInput) {
         messageInput.value = `I'm interested in the ${tier} package.`;
@@ -113,10 +112,7 @@ const Pricing = () => {
                 </h3>
                 <div className="flex items-baseline mb-4">
                   <span className="text-4xl font-bold text-gray-900 dark:text-white transition-colors duration-300">
-                    ${tier.price}
-                  </span>
-                  <span className="ml-2 text-gray-500 dark:text-gray-400 transition-colors duration-300">
-                    USD
+                    {formatPrice(tier.price)}
                   </span>
                 </div>
                 <p className="text-gray-600 dark:text-gray-300 mb-6 transition-colors duration-300">
@@ -159,7 +155,7 @@ const Pricing = () => {
                 <div className="text-sm text-gray-600 dark:text-gray-300 mb-6 transition-colors duration-300">
                   Estimated delivery time: {tier.deliveryTime}
                 </div>
-                <button 
+                <button
                   onClick={() => handleGetStarted(tier.name)}
                   className="w-full py-3 px-6 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium transition-colors duration-300 transform hover:scale-105"
                 >
