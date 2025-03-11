@@ -1,57 +1,62 @@
-import { Github, Linkedin } from 'lucide-react';
+import { Github, Linkedin, Mail, Heart } from 'lucide-react';
 
 const Footer = () => {
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <footer className="bg-gray-900 text-white py-12 transition-colors duration-300 dark:bg-white dark:text-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          {/* Logo */}
-          <div className="text-2xl font-bold mb-4 md:mb-0 dark:text-gray-900">VB</div>
-
-          {/* Navigation Links */}
-          <nav className="flex space-x-8 mb-4 md:mb-0">
-            {[
-              { name: 'Home', href: '#home' },
-              { name: 'About', href: '#about' },
-              { name: 'Projects', href: '#projects' },
-              { name: 'Contact', href: '#contact' },
-              { name: 'Resume', href: '/resume.pdf', external: true },
-            ].map(({ name, href, external }) => (
-              <a
-                key={name}
-                href={href}
-                target={external ? '_blank' : '_self'}
-                rel={external ? 'noopener noreferrer' : undefined}
-                className="hover:text-blue-400 dark:hover:text-blue-600 transition-colors"
-              >
-                {name}
+    <footer className="bg-gray-900 text-white py-12 relative wave-animation footer-pattern">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid md:grid-cols-3 gap-8 mb-8">
+          <div className="space-y-4">
+            <h3 className="text-2xl font-bold mb-4 glowing-text">JD</h3>
+            <p className="text-gray-400">
+              Crafting beautiful digital experiences with passion and precision.
+            </p>
+          </div>
+          
+          <div className="space-y-4">
+            <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
+            <div className="flex flex-col space-y-2">
+              <button onClick={() => scrollToSection('home')} className="text-gray-400 hover:text-blue-400 transition-colors w-fit social-link">Home</button>
+              <button onClick={() => scrollToSection('about')} className="text-gray-400 hover:text-blue-400 transition-colors w-fit social-link">About</button>
+              <button onClick={() => scrollToSection('projects')} className="text-gray-400 hover:text-blue-400 transition-colors w-fit social-link">Projects</button>
+              <button onClick={() => scrollToSection('contact')} className="text-gray-400 hover:text-blue-400 transition-colors w-fit social-link">Contact</button>
+            </div>
+          </div>
+          
+          <div className="space-y-4">
+            <h3 className="text-xl font-semibold mb-4">Connect</h3>
+            <div className="flex flex-col space-y-2">
+              <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 text-gray-400 hover:text-blue-400 transition-colors w-fit social-link">
+                <Github className="w-5 h-5" />
+                <span>GitHub</span>
               </a>
-            ))}
-          </nav>
-
-          {/* Social Icons */}
-          <div className="flex space-x-6">
-            {[
-              { Icon: Github, href: 'https://github.com/AkaraDaimaou' },
-              { Icon: Linkedin, href: 'https://www.linkedin.com/in/vashist-beedessy-17a8172a0' },
-            ].map(({ Icon, href }) => (
-              <a
-                key={href}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-blue-400 dark:hover:text-blue-600 transition-colors"
-                aria-label={href.includes('github') ? 'GitHub' : 'LinkedIn'}
-              >
-                <Icon className="w-6 h-6 text-white dark:text-gray-900" />
+              <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 text-gray-400 hover:text-blue-400 transition-colors w-fit social-link">
+                <Linkedin className="w-5 h-5" />
+                <span>LinkedIn</span>
               </a>
-            ))}
+              <a href="mailto:contact@example.com" className="flex items-center space-x-2 text-gray-400 hover:text-blue-400 transition-colors w-fit social-link">
+                <Mail className="w-5 h-5" />
+                <span>Email</span>
+              </a>
+            </div>
           </div>
         </div>
-
-        {/* Copyright */}
-        <div className="mt-8 text-center text-gray-400 dark:text-gray-700">
-          <p>&copy; {new Date().getFullYear()} VB. All rights reserved.</p>
+        
+        <div className="border-t border-gray-800 pt-8 mt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <p className="text-gray-400 mb-4 md:mb-0">
+              &copy; {new Date().getFullYear()} All rights reserved.
+            </p>
+            <p className="flex items-center text-gray-400">
+              Made with <Heart className="w-4 h-4 mx-2 text-red-500 animate-pulse" /> by JD
+            </p>
+          </div>
         </div>
       </div>
     </footer>
