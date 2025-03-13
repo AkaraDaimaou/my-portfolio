@@ -1,13 +1,6 @@
 import { Github, Linkedin, Mail, Heart } from 'lucide-react';
 
 const Footer = () => {
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <footer className="bg-gray-900 text-white py-12 relative wave-animation footer-pattern">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -22,21 +15,21 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
             <div className="flex flex-col space-y-2">
-              <button onClick={() => scrollToSection('home')} className="text-gray-400 hover:text-blue-400 transition-colors w-fit social-link">Home</button>
-              <button onClick={() => scrollToSection('about')} className="text-gray-400 hover:text-blue-400 transition-colors w-fit social-link">About</button>
-              <button onClick={() => scrollToSection('projects')} className="text-gray-400 hover:text-blue-400 transition-colors w-fit social-link">Projects</button>
-              <button onClick={() => scrollToSection('contact')} className="text-gray-400 hover:text-blue-400 transition-colors w-fit social-link">Contact</button>
+              <a href="#home" className="text-gray-400 hover:text-blue-400 transition-colors w-fit social-link">Home</a>
+              <a href="#about" className="text-gray-400 hover:text-blue-400 transition-colors w-fit social-link">About</a>
+              <a href="#projects" className="text-gray-400 hover:text-blue-400 transition-colors w-fit social-link">Projects</a>
+              <a href="#contact" className="text-gray-400 hover:text-blue-400 transition-colors w-fit social-link">Contact</a>
             </div>
           </div>
           
           <div className="space-y-4">
             <h3 className="text-xl font-semibold mb-4">Connect</h3>
             <div className="flex flex-col space-y-2">
-              <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 text-gray-400 hover:text-blue-400 transition-colors w-fit social-link">
+              <a href="https://github.com/AkaraDaimaou" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 text-gray-400 hover:text-blue-400 transition-colors w-fit social-link">
                 <Github className="w-5 h-5" />
                 <span>GitHub</span>
               </a>
-              <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 text-gray-400 hover:text-blue-400 transition-colors w-fit social-link">
+              <a href="https://www.linkedin.com/in/vashist-beedessy-17a8172a0" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 text-gray-400 hover:text-blue-400 transition-colors w-fit social-link">
                 <Linkedin className="w-5 h-5" />
                 <span>LinkedIn</span>
               </a>

@@ -1,17 +1,24 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 const CustomCursor = () => {
   const [cursor, setCursor] = useState({ x: 0, y: 0 });
   const [trail, setTrail] = useState<{ x: number; y: number }[]>([]);
+  let animationFrameId: number;
 
   useEffect(() => {
     const updateCursor = (e: MouseEvent) => {
-      setCursor({ x: e.clientX, y: e.clientY });
-      setTrail(prev => [...prev.slice(-5), { x: e.clientX, y: e.clientY }]);
+      cancelAnimationFrame(animationFrameId);
+      animationFrameId = requestAnimationFrame(() => {
+        setCursor({ x: e.clientX, y: e.clientY });
+        setTrail((prev) => [...prev.slice(-4), { x: e.clientX, y: e.clientY }]);
+      });
     };
 
-    window.addEventListener('mousemove', updateCursor);
-    return () => window.removeEventListener('mousemove', updateCursor);
+    window.addEventListener("mousemove", updateCursor);
+    return () => {
+      window.removeEventListener("mousemove", updateCursor);
+      cancelAnimationFrame(animationFrameId);
+    };
   }, []);
 
   return (
@@ -23,7 +30,7 @@ const CustomCursor = () => {
           transform: `translate(${cursor.x}px, ${cursor.y}px)`,
         }}
       />
-      
+
       {/* Cursor trail */}
       {trail.map((point, index) => (
         <div
