@@ -4,21 +4,16 @@
 
 /* Custom Cursor */
 .cursor-main {
-  position: fixed;
-  width: 2rem;
-  height: 2rem;
-  pointer-events: none;
-  z-index: 50;
+  @apply fixed w-8 h-8 pointer-events-none z-50;
   margin-left: -16px;
   margin-top: -16px;
   background: radial-gradient(circle, rgba(59, 130, 246, 0.5) 0%, rgba(59, 130, 246, 0) 70%);
+  mix-blend-mode: difference;
+  transition: width 0.2s, height 0.2s;
 }
 
 .cursor-trail {
-  position: fixed;
-  width: 1rem;
-  height: 1rem;
-  pointer-events: none;
+  @apply fixed w-4 h-4 pointer-events-none;
   margin-left: -8px;
   margin-top: -8px;
   background: radial-gradient(circle, rgba(147, 197, 253, 0.3) 0%, rgba(147, 197, 253, 0) 70%);
@@ -79,9 +74,9 @@ button:hover ~ .cursor-main,
   transform: rotateY(180deg);
 }
 
-/* Text and Shadow Effects */
+/* Glowing Effects */
 .glowing-text {
-  transition: all 0.3s;
+  @apply transition-all duration-300;
 }
 
 .dark .glowing-text {
@@ -93,13 +88,19 @@ button:hover ~ .cursor-main,
 }
 
 .shadow-neon {
-  transition: all 0.3s;
+  @apply transition-all duration-300;
 }
 
 .dark .shadow-neon {
   box-shadow: 
     0 0 5px rgba(147, 197, 253, 0.3),
     0 0 20px rgba(147, 197, 253, 0.2);
+}
+
+.light .shadow-neon {
+  box-shadow: 
+    0 0 5px rgba(59, 130, 246, 0.3),
+    0 0 20px rgba(59, 130, 246, 0.2);
 }
 
 .shadow-neon:hover {
@@ -112,7 +113,12 @@ button:hover ~ .cursor-main,
     0 0 30px rgba(147, 197, 253, 0.3);
 }
 
-/* Glass Effect */
+.light .shadow-neon:hover {
+  box-shadow: 
+    0 0 10px rgba(59, 130, 246, 0.5),
+    0 0 30px rgba(59, 130, 246, 0.3);
+}
+
 .glass-effect {
   @apply transition-all duration-300;
 }
@@ -221,6 +227,11 @@ html {
   transition: transform 0.3s ease;
 }
 
+.skill-card pre code {
+  font-family: 'Fira Code', monospace;
+  line-height: 1.5;
+}
+
 /* Footer Social Links Animation */
 .social-link {
   @apply relative overflow-hidden;
@@ -243,4 +254,9 @@ html {
     linear-gradient(-45deg, transparent 75%, rgba(59, 130, 246, 0.1) 75%);
   background-size: 20px 20px;
   background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}
+
+/* Footer Theme Transition */
+.footer-theme-transition {
+  @apply transition-all duration-300 ease-in-out;
 }
