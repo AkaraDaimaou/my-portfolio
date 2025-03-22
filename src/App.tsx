@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import Background from './components/Background';
 import ThemeToggle from './components/ThemeToggle';
 import CustomCursor from './components/CustomCursor';
+import ScrollProgress from './components/ScrollProgress';
 import { ThemeProvider } from './context/ThemeContext';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
     <ThemeProvider>
       <div className="min-h-screen bg-white dark:bg-gray-900 relative transition-colors duration-300">
         <CustomCursor />
+        <ScrollProgress />
         <Background />
         <div className="relative z-10">
           <Header />
